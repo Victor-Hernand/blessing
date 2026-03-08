@@ -1,0 +1,136 @@
+/* DESIGN: Industrial Automotriz Premium — Nosotros con fotos reales */
+import { motion } from "framer-motion";
+import { CheckCircle2, Users, Award, TrendingUp } from "lucide-react";
+import { IMAGES, COMPANY } from "@/lib/constants";
+
+const highlights = [
+  { icon: Award, title: "Calidad Garantizada", desc: "Marcas reconocidas a nivel mundial" },
+  { icon: Users, title: "46+ Colaboradores", desc: "Equipo comprometido contigo" },
+  { icon: TrendingUp, title: "Precios Competitivos", desc: "Los mejores del mercado" },
+];
+
+const values = [
+  "Más de 10 años de experiencia en el mercado hondureño",
+  "Amplio inventario con más de 9 categorías de productos",
+  "Servicio de entrega a domicilio en Tegucigalpa",
+  "Asesoría técnica personalizada por vendedores expertos",
+  "Alianzas con marcas premium y convencionales",
+  "Atención al cliente de lunes a sábado",
+];
+
+export default function AboutSection() {
+  return (
+    <section id="nosotros" className="py-20 lg:py-28 bg-white relative overflow-hidden">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-red-50 rounded-full blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-50 rounded-full blur-3xl opacity-20 translate-y-1/2 -translate-x-1/2" />
+
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Image side - Two stacked real photos */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="relative"
+          >
+            {/* Main image - Customer service */}
+            <div className="relative overflow-hidden shadow-2xl shadow-black/10">
+              <img
+                src={IMAGES.realCustomerService}
+                alt="Atención al cliente en Auto Repuestos Blessing"
+                className="w-full h-[320px] lg:h-[420px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+            </div>
+            {/* Secondary image - Delivery team overlay */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="absolute -bottom-8 -right-4 lg:-right-8 w-[55%] shadow-xl border-4 border-white"
+            >
+              <img
+                src={IMAGES.realDeliveryTeam}
+                alt="Equipo de delivery de Auto Repuestos Blessing"
+                className="w-full h-[140px] lg:h-[180px] object-cover"
+              />
+            </motion.div>
+            {/* Experience badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="absolute -bottom-6 left-4 lg:left-8 bg-red-700 text-white p-5 shadow-xl shadow-red-900/30"
+            >
+              <div className="text-3xl font-bold leading-none" style={{ fontFamily: "var(--font-heading)" }}>10+</div>
+              <div className="text-[10px] uppercase tracking-wider font-medium opacity-90 mt-1">Años de<br />Experiencia</div>
+            </motion.div>
+            {/* Corner decorations */}
+            <div className="absolute -top-3 -left-3 w-20 h-20 border-t-[3px] border-l-[3px] border-red-700 hidden lg:block" />
+          </motion.div>
+
+          {/* Content side */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-[2px] bg-red-700" />
+              <span className="section-label">Conócenos</span>
+            </div>
+            <h2 className="section-title text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-6">
+              Sobre <span className="text-gradient-red">Nosotros</span>
+            </h2>
+            <p className="text-gray-600 text-base leading-relaxed mb-4">
+              <strong className="text-gray-800">Auto Repuestos Blessing</strong> es una empresa hondureña dedicada a la venta de autopartes y accesorios vehiculares. Nos hemos consolidado como referentes en el mercado gracias a nuestra amplia variedad de productos, precios accesibles y un equipo de profesionales comprometidos con brindar la mejor atención.
+            </p>
+            <p className="text-amber-700 italic text-lg mb-8" style={{ fontFamily: "var(--font-accent)" }}>
+              "{COMPANY.slogan}"
+            </p>
+
+            {/* Values checklist */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+              {values.map((v, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="flex items-start gap-2.5"
+                >
+                  <CheckCircle2 className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
+                  <span className="text-gray-600 text-sm leading-snug">{v}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Highlight cards */}
+            <div className="grid grid-cols-3 gap-3">
+              {highlights.map((h, i) => (
+                <motion.div
+                  key={h.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  className="bg-gray-50 border border-gray-100 p-4 text-center group hover:border-red-200 hover:bg-red-50/30 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <h.icon className="w-6 h-6 text-red-700 mx-auto mb-2 group-hover:scale-110 transition-transform" />
+                  <div className="text-xs font-bold text-gray-800 uppercase tracking-wide" style={{ fontFamily: "var(--font-heading)" }}>{h.title}</div>
+                  <p className="text-[10px] text-gray-500 mt-1 leading-tight">{h.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
