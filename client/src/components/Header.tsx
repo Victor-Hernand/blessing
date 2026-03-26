@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { label: "Servicios", href: "#servicios" },
   { label: "Marcas", href: "#marcas" },
   { label: "Galería", href: "#galeria" },
+  { label: "Garantía", href: "/garantia" },
   { label: "Contacto", href: "#contacto" },
 ];
 
