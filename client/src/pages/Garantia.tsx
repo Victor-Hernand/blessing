@@ -112,7 +112,7 @@ function ClaimForm() {
       `*Fecha de compra:* ${purchaseDate}%0A` +
       `*Descripción del problema:*%0A${description}%0A%0A` +
       `_Enviado desde la página web de Auto Repuestos Blessing_`;
-    window.open(`https://wa.me/50432850830?text=${msg}`, "_blank");
+    window.open(`https://wa.me/50492507107?text=${msg}`, "_blank");
   };
 
   const inputBase = "w-full bg-white border border-gray-200 px-4 py-3 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-red-600 focus:ring-1 focus:ring-red-600/20 transition-colors";

@@ -27,13 +27,13 @@ export const IMAGES = {
 export const COMPANY = {
   name: "Auto Repuestos Blessing",
   slogan: "La calidad no es cara",
-  phone: "+504 3285-0830",
+  phone: "+504 9250-7107",
   email: "ventas@arblessing.com",
   address: "Colonia Kennedy, al final de la primera entrada, frente al Instituto Técnico Honduras. Tegucigalpa, Honduras",
   rtn: "08011988090350",
   facebook: "https://www.facebook.com/profile.php?id=100054467124522",
   instagram: "https://www.instagram.com/autorepuestosblessing/",
-  whatsapp: "https://wa.me/50432850830",
+  whatsapp: "https://wa.me/50492507107",
   website: "https://autorepuestosblessing.com",
   schedule: {
     weekdays: "Lunes a Viernes: 8:00 AM - 5:30 PM",
