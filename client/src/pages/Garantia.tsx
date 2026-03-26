@@ -1,6 +1,6 @@
 /* DESIGN: Política de Garantía — Auto Repuestos Blessing
  * Estilo: Ejecutivo corporativo, tema claro, tipografía Oswald + Roboto
- * Sin marcas, términos hondureños, sin vehículos excluidos, techo 45 días
+ * Sin marcas, términos hondureños, sin vehículos excluidos, techo 30 días
  * + Formulario reclamo WhatsApp, FAQ, resultado del reclamo, nota instalación, disclaimer
  */
 import { useState } from "react";
@@ -13,19 +13,20 @@ import {
 } from "lucide-react";
 import { COMPANY } from "@/lib/constants";
 
-/* ─── WARRANTY TABLE — Max 45 days, no brands, Honduran terms ─── */
+/* ─── WARRANTY TABLE — Max 30 days, no brands, Honduran terms ─── */
 const WARRANTY_TABLE = [
-  { group: "Amortiguadores", icon: ArrowUpDown, items: [{ parts: "Amortiguadores delanteros y traseros", days: 45 }] },
-  { group: "Suspensión y Dirección", icon: ArrowUpDown, items: [{ parts: "Tijeras, muñones, rótulas, terminales de dirección y cremallera, barras estabilizadoras, links, bujes", days: 45 }] },
-  { group: "Bombas Hidráulicas", icon: Droplets, items: [{ parts: "Bomba de freno, bomba de clutch, cilindro auxiliar", days: 45 }] },
-  { group: "Clutch", icon: Settings, items: [{ parts: "Disco de clutch, plato de presión, collarina, kit de clutch completo", days: 45 }] },
+  { group: "Amortiguadores", icon: ArrowUpDown, items: [{ parts: "Amortiguadores delanteros y traseros", days: 30 }] },
+  { group: "Suspensión y Dirección", icon: ArrowUpDown, items: [{ parts: "Tijeras, muñones, rótulas, terminales de dirección y cremallera, barras estabilizadoras, links, bujes", days: 30 }] },
+  { group: "Bombas Hidráulicas", icon: Droplets, items: [{ parts: "Bomba de freno, bomba de clutch, cilindro auxiliar", days: 30 }] },
+  { group: "Clutch", icon: Settings, items: [{ parts: "Disco de clutch, plato de presión, collarina, kit de clutch completo", days: 30 }] },
   { group: "Sistema de Enfriamiento", icon: Thermometer, items: [{ parts: "Bomba de agua, radiador, termostato, mangueras de radiador", days: 30 }] },
-  { group: "Frenos", icon: CircleDot, items: [{ parts: "Pastillas, fricciones, discos, tambores", days: 45 }, { parts: "Bomba de rueda, caliper, manguera de freno", days: 30 }] },
+  { group: "Frenos", icon: CircleDot, items: [{ parts: "Pastillas, fricciones, discos, tambores", days: 30 }, { parts: "Bomba de rueda, caliper, manguera de freno", days: 30 }] },
   { group: "Motor", icon: Cog, items: [{ parts: "Pistones, anillos, metales de biela y bancada, empaques de culata, válvulas, guías de válvula, cadena de tiempo", days: 30 }] },
-  { group: "Transmisión", icon: Settings, items: [{ parts: "Puntas de eje (homocineticas), crucetas, bujes de cardán", days: 45 }, { parts: "Bufas, ejes completos, rodamientos de rueda", days: 30 }] },
+  { group: "Transmisión", icon: Settings, items: [{ parts: "Puntas de eje (homocineticas), crucetas, bujes de cardán", days: 30 }, { parts: "Bufas, ejes completos, rodamientos de rueda", days: 30 }] },
   { group: "Filtros", icon: Filter, items: [{ parts: "Filtro de aceite, filtro de aire, filtro de combustible, filtro de cabina", days: 15 }] },
   { group: "Eléctrico", icon: Zap, items: [{ parts: "Alternador, motor de arranque (marcha), sensores, bobinas, bujías, cables de bujía, switch, relay, fusibles, bomba eléctrica de gasolina", days: 15 }] },
-  { group: "Lubricantes y Fluidos", icon: Droplets, items: [{ parts: "Aceite de motor, líquido de frenos, refrigerante, aceite de transmisión", days: 15 }] },
+  { group: "Lubricantes y Fluidos", icon: Droplets, items: [{ parts: "Aceite de motor, líquido de frenos, refrigerante, aceite de transmisión", days: 3 }] },
+  { group: "Inyectores de combustible diésel", icon: Zap, items: [{ parts: "Inyectores de combustible diésel", days: 0, label: "No aplica garantía" }] },
   { group: "Repuestos en General", icon: Wrench, items: [{ parts: "Cualquier repuesto no especificado en las categorías anteriores", days: 15 }] },
 ];
 
@@ -54,8 +55,9 @@ const FAQ_ITEMS = [
 
 /* ─── Badge color by days ─── */
 function getDaysBadge(days: number) {
-  if (days >= 45) return { bg: "bg-red-700", text: "text-white" };
-  if (days >= 30) return { bg: "bg-gray-800", text: "text-white" };
+  if (days === 0) return { bg: "bg-gray-900", text: "text-white" };
+  if (days >= 30) return { bg: "bg-red-700", text: "text-white" };
+  if (days >= 15) return { bg: "bg-gray-800", text: "text-white" };
   return { bg: "bg-gray-200", text: "text-gray-800" };
 }
 
@@ -206,7 +208,7 @@ export default function Garantia() {
             <div className="flex flex-wrap items-center gap-6 mt-10">
               <div className="flex items-center gap-2.5">
                 <Shield className="w-5 h-5 text-red-500" />
-                <span className="text-sm text-gray-300 font-medium">Hasta 45 días</span>
+                <span className="text-sm text-gray-300 font-medium">Hasta 30 días</span>
               </div>
               <div className="w-px h-4 bg-gray-700" />
               <div className="flex items-center gap-2.5">
@@ -249,7 +251,7 @@ export default function Garantia() {
               <ul className="space-y-3 text-sm text-gray-600 leading-relaxed">
                 <li className="flex items-start gap-2.5"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-1" />Desperfectos de fábrica en todos los repuestos adquiridos en nuestra tienda.</li>
                 <li className="flex items-start gap-2.5"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-1" />Cada producto tiene un período de garantía según su categoría, expresado en días a partir de la fecha de compra.</li>
-                <li className="flex items-start gap-2.5"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-1" />Cobertura máxima de hasta 45 días calendario.</li>
+                <li className="flex items-start gap-2.5"><CheckCircle2 className="w-3.5 h-3.5 text-green-500 shrink-0 mt-1" />Cobertura máxima de hasta 30 días calendario.</li>
               </ul>
             </motion.div>
 
@@ -267,10 +269,27 @@ export default function Garantia() {
                 <li className="flex items-start gap-2.5"><XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-1" />Evidencia de mal uso, golpes o rayaduras.</li>
                 <li className="flex items-start gap-2.5"><XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-1" />Mala instalación del producto.</li>
                 <li className="flex items-start gap-2.5"><XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-1" />Aplicación incorrecta o en vehículo no especificado por el fabricante.</li>
+                <li className="flex items-start gap-2.5"><XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-1" />Inyectores de combustible diésel (no aplican para garantía).</li>
                 <li className="flex items-start gap-2.5"><XCircle className="w-3.5 h-3.5 text-red-400 shrink-0 mt-1" />Costos de mano de obra, instalación o desinstalación.</li>
               </ul>
             </motion.div>
           </div>
+
+          {/* ═══ Observaciones ═══ */}
+          <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-6 bg-amber-50 border border-amber-200 p-7 relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-1 h-full bg-amber-600" />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 bg-amber-100 flex items-center justify-center rounded-sm">
+                <Info className="w-5 h-5 text-amber-700" />
+              </div>
+              <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wider" style={{ fontFamily: "var(--font-heading)" }}>Presentamos las observaciones</h3>
+            </div>
+            <ul className="space-y-3 text-sm text-amber-900 leading-relaxed">
+              <li className="flex items-start gap-2.5"><CircleDot className="w-3.5 h-3.5 text-amber-700 shrink-0 mt-1" />Los lubricantes y fluidos cuentan con un plazo máximo de 3 días para su devolución o reclamo, siempre y cuando conserven su sello de fábrica intacto.</li>
+              <li className="flex items-start gap-2.5"><CircleDot className="w-3.5 h-3.5 text-amber-700 shrink-0 mt-1" />Se añade la categoría de inyectores de combustible diésel, los cuales no aplican para garantía.</li>
+              <li className="flex items-start gap-2.5"><CircleDot className="w-3.5 h-3.5 text-amber-700 shrink-0 mt-1" />Todos los productos, especialmente las partes mecánicas, cuentan con una garantía máxima de 5,000 km o 30 días, lo que ocurra primero.</li>
+            </ul>
+          </motion.div>
 
           {/* ═══ Resultado del Reclamo ═══ */}
           <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-6 bg-white border border-gray-200 p-7 relative overflow-hidden">
@@ -348,7 +367,7 @@ export default function Garantia() {
                   </div>
                   <div className="col-span-3 px-6 py-4 flex items-center justify-center">
                     <span className={`inline-flex items-center gap-1.5 px-4 py-1.5 text-[13px] font-bold ${getDaysBadge(item.days).bg} ${getDaysBadge(item.days).text}`} style={{ fontFamily: "var(--font-heading)" }}>
-                      <Clock className="w-3 h-3" />{item.days} días
+                      <Clock className="w-3 h-3" />{"label" in item && item.label ? item.label : `${item.days} días`}
                     </span>
                   </div>
                 </motion.div>
@@ -356,7 +375,7 @@ export default function Garantia() {
             ))}
           </div>
           <div className="flex items-center gap-5 mt-5 text-xs text-gray-400">
-            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-red-700 rounded-sm" /> 45 días</div>
+            <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-red-700 rounded-sm" /> 30 días</div>
             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-gray-800 rounded-sm" /> 30 días</div>
             <div className="flex items-center gap-1.5"><div className="w-3 h-3 bg-gray-200 rounded-sm" /> 15 días</div>
           </div>
